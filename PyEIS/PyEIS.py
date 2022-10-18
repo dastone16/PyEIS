@@ -4742,7 +4742,7 @@ class EIS_exp:
         for i in range(len(self.df)):
             ax.plot(self.df[i].re, self.df[i].im, marker='o', ms=4, lw=2, color=colors[i], ls='-', label=self.label_cycleno[i])
             if fitting == 'on':
-                ax.plot(self.circuit_fit[i].real, -self.circuit_fit[i].imag, lw=0, marker='o', ms=8, mec='r', mew=1, mfc='none', label='')
+                ax.plot(self.circuit_fit[i].to_numpy().real, -self.circuit_fit[i].to_numpy().imag, lw=0, marker='o', ms=8, mec='r', mew=1, mfc='none', label='')
 
         ### Bode Plot
         if bode=='on':
@@ -4750,8 +4750,8 @@ class EIS_exp:
                 ax1.plot(np.log10(self.df[i].f), self.df[i].re, color=colors_real[i], marker='D', ms=3, lw=2.25, ls='-', label=self.label_re_1[i])
                 ax1.plot(np.log10(self.df[i].f), self.df[i].im, color=colors_imag[i], marker='s', ms=3, lw=2.25, ls='-', label=self.label_im_1[i])
                 if fitting == 'on':
-                    ax1.plot(np.log10(self.df[i].f), self.circuit_fit[i].real, lw=0, marker='D', ms=8, mec='r', mew=1, mfc='none', label='')
-                    ax1.plot(np.log10(self.df[i].f), -self.circuit_fit[i].imag, lw=0, marker='s', ms=8, mec='r', mew=1, mfc='none')
+                    ax1.plot(np.log10(self.df[i].f), self.circuit_fit[i].to_numpy().real, lw=0, marker='D', ms=8, mec='r', mew=1, mfc='none', label='')
+                    ax1.plot(np.log10(self.df[i].f), -self.circuit_fit[i].to_numpy().imag, lw=0, marker='s', ms=8, mec='r', mew=1, mfc='none')
                 ax1.set_xlabel("log(f) [Hz]")
                 ax1.set_ylabel("Z', -Z'' [$\Omega$]")
                 if legend == 'on' or legend == 'potential': 
@@ -4761,7 +4761,7 @@ class EIS_exp:
             for i in range(len(self.df)):
                 ax1.plot(np.log10(self.df[i].f), self.df[i].re, color=colors_real[i], marker='D', ms=3, lw=2.25, ls='-', label=self.label_cycleno[i])
                 if fitting == 'on':
-                    ax1.plot(np.log10(self.df[i].f), self.circuit_fit[i].real, lw=0, marker='D', ms=8, mec='r', mew=1, mfc='none', label='')
+                    ax1.plot(np.log10(self.df[i].f), self.circuit_fit[i].to_numpy().real, lw=0, marker='D', ms=8, mec='r', mew=1, mfc='none', label='')
                 ax1.set_xlabel("log(f) [Hz]")
                 ax1.set_ylabel("Z' [$\Omega$]")
                 if legend == 'on' or legend =='potential':
@@ -4771,7 +4771,7 @@ class EIS_exp:
             for i in range(len(self.df)):
                 ax1.plot(np.log10(self.df[i].f), np.log10(self.df[i].re), color=colors_real[i], marker='D', ms=3, lw=2.25, ls='-', label=self.label_cycleno[i])
                 if fitting == 'on':
-                    ax1.plot(np.log10(self.df[i].f), np.log10(self.circuit_fit[i].real), lw=0, marker='D', ms=8, mec='r', mew=1, mfc='none', label='')
+                    ax1.plot(np.log10(self.df[i].f), np.log10(self.circuit_fit[i].to_numpy().real), lw=0, marker='D', ms=8, mec='r', mew=1, mfc='none', label='')
                 ax1.set_xlabel("log(f) [Hz]")
                 ax1.set_ylabel("log(Z') [$\Omega$]")
                 if legend == 'on' or legend == 'potential': 
@@ -4781,7 +4781,7 @@ class EIS_exp:
             for i in range(len(self.df)):
                 ax1.plot(np.log10(self.df[i].f), self.df[i].im, color=colors_imag[i], marker='s', ms=3, lw=2.25, ls='-', label=self.label_cycleno[i])
                 if fitting == 'on':
-                    ax1.plot(np.log10(self.df[i].f), -self.circuit_fit[i].imag, lw=0, marker='s', ms=8, mec='r', mew=1, mfc='none', label='')
+                    ax1.plot(np.log10(self.df[i].f), -self.circuit_fit[i].to_numpy().imag, lw=0, marker='s', ms=8, mec='r', mew=1, mfc='none', label='')
                 ax1.set_xlabel("log(f) [Hz]")
                 ax1.set_ylabel("-Z'' [$\Omega$]")
                 if legend == 'on' or legend == 'potential':
@@ -4791,7 +4791,7 @@ class EIS_exp:
             for i in range(len(self.df)):
                 ax1.plot(np.log10(self.df[i].f), np.log10(self.df[i].im), color=colors_imag[i], marker='s', ms=3, lw=2.25, ls='-', label=self.label_cycleno[i])
                 if fitting == 'on':
-                    ax1.plot(np.log10(self.df[i].f), np.log10(-self.circuit_fit[i].imag), lw=0, marker='s', ms=8, mec='r', mew=1, mfc='none', label='')
+                    ax1.plot(np.log10(self.df[i].f), np.log10(-self.circuit_fit[i].to_numpy().imag), lw=0, marker='s', ms=8, mec='r', mew=1, mfc='none', label='')
                 ax1.set_xlabel("log(f) [Hz]")
                 ax1.set_ylabel("log(-Z'') [$\Omega$]")
                 if legend == 'on' or legend == 'potential':
@@ -4802,8 +4802,8 @@ class EIS_exp:
                 ax1.plot(np.log10(self.df[i].f), np.log10(self.df[i].re), color=colors_real[i], marker='D', ms=3, lw=2.25,  ls='-', label=self.label_re_1[i])
                 ax1.plot(np.log10(self.df[i].f), np.log10(self.df[i].im), color=colors_imag[i], marker='s', ms=3, lw=2.25,  ls='-', label=self.label_im_1[i])
                 if fitting == 'on':
-                    ax1.plot(np.log10(self.df[i].f), np.log10(self.circuit_fit[i].real), lw=0, marker='D', ms=8, mec='r', mew=1, mfc='none', label='')
-                    ax1.plot(np.log10(self.df[i].f), np.log10(-self.circuit_fit[i].imag), lw=0, marker='s', ms=8, mec='r', mew=1, mfc='none')
+                    ax1.plot(np.log10(self.df[i].f), np.log10(self.circuit_fit[i].to_numpy().real), lw=0, marker='D', ms=8, mec='r', mew=1, mfc='none', label='')
+                    ax1.plot(np.log10(self.df[i].f), np.log10(-self.circuit_fit[i].to_numpy().imag), lw=0, marker='s', ms=8, mec='r', mew=1, mfc='none')
                 ax1.set_xlabel("log(f) [Hz]")
                 ax1.set_ylabel("log(Z', -Z'') [$\Omega$]")
                 if legend == 'on' or legend == 'potential':
